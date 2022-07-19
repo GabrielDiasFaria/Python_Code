@@ -6,3 +6,5 @@ py -m pip install googletrans
 
 py -m pip install virtualenv
 py -m venv env 
+
+py -m pip install django
