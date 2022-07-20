@@ -69,6 +69,36 @@
 
                           <a class="btn btn-warning me-2" href="{% url 'edit' student.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
 
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{student.id}}">
+                            <i class="fa-solid fa-trash-can"></i>
+                          </button>
+
+                          <!-- Modal - Delete Student -->
+                      <div class="modal" id="delete{{student.id}}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Estudante: {{ student.first_name }} {{ student.last_name }}
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Tem certeza de que deseja deletar??</p>
+                            </div>
+                            <div class="modal-footer">
+                              <form action="{% url 'delete' student.id %}" method="POST">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-primary" value="Delete">
+                              </form>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                         </td>
                       </tr>
                       {% endfor %}
